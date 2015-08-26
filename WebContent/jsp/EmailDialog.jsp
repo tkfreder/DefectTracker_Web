@@ -61,6 +61,14 @@
 			} else {
 
 				document.getElementById("sendEmailButton").disabled = false;
+				
+				var emailAddresses = "";
+				for (x = 0; x < document.getElementById("emailTo").length; x++) {
+					emailAddresses += document.getElementById("emailTo")[x].value.trim() + ";";
+				}
+				
+				document.getElementById("selectedEmailAddresses").value = emailAddresses;
+				
 			}
 		}
 	</script>
@@ -98,7 +106,7 @@
 	
 							for (User user : userList) {
 						%>
-						<option value="<%=user.getUserId()%>">
+						<option value="<%=user.getEmail()%>">
 							<%=user.getFirstName() + " " + user.getLastName()%>
 						</option>
 						<%
@@ -128,22 +136,25 @@
 			</div>
 			<br>
 			<br>
-			<input class="btn btn-primary button-rounded"type="submit"
+			<input class="btn btn-primary button-rounded" type="submit"
 				value="Send email" id="sendEmailButton" disabled="true">
 
 
+<%    
+ 			// Build email   
+ 			String emailSubject = "Team A Defect Tracker Notification for Defect ID: " + defect.getId() + " - " + defect.getSummary();   
+ 			String emailBody = "<b>Title: " + defect.getSummary() + "</b><br><br><b>ID:</b> " + defect.getId() + "<br>";   
+ 			emailBody += "<b>Priority:</b> " + defect.getPriority().getName() + "<br><b>Status:</b> " + defect.getStatus().getStatusName() + "<br>";   
+ 			emailBody += "<b>Assigned to:</b> " + defect.getAssigneeId().getFirstName() + " " + defect.getAssigneeId().getLastName() + "<br><br>";   
+ 			emailBody += "<b>Desctiption:</b><br>" + defect.getDescription();   
+ 			emailBody += "<br><br>Email sent by Team A Defect Tracker";   
+ 			%>   
+ 			<input type="hidden" id="emailBody" name="emailBody" value="<%= emailBody %>">   
+ 			<input type="hidden" id="emailSubject" name="emailSubject" value="<%= emailSubject %>">   
+ 			<input type="hidden" id="selectedEmailAddresses" name="selectedEmailAddresses"> 
+
 		</form>
 	</div>
-	<!-- 
-<H1>Some test data:</H1>
-<p><b> (This will all go away down here)</b></p>
-<p>ID: <%=defect.getId()%></p>
-<p>Description: <%=defect.getDescription()%></p>
-<p>Summary: <%=defect.getSummary()%></p>
-<p>Assignee: <%=defect.getAssigneeId().getFirstName() + " " + defect.getAssigneeId().getLastName()%></p>
-<p>Priority: <%=defect.getPriority().getName()%></p>
-<p>Status: <%=defect.getStatus().getStatusName()%></p>
- -->
 
 	<script>
 		SelectSort(document.getElementById('selectEmailTo'));
