@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" metadata-complete="true" version="3.1">
+  <servlet>
+    <servlet-name>SubmitDefect</servlet-name>
+    <servlet-class>java2.ateam.SubmitDefect</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ViewAll</servlet-name>
+    <servlet-class>java2.ateam.ViewAll</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditDefect</servlet-name>
+    <servlet-class>java2.ateam.EditDefect</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SendEmail</servlet-name>
+    <servlet-class>java2.ateam.SendEmail</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ProcessEmail</servlet-name>
+    <servlet-class>java2.ateam.ProcessEmail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitDefect</servlet-name>
+    <url-pattern>/SubmitDefect</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ViewAll</servlet-name>
+    <url-pattern>/ViewAll</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditDefect</servlet-name>
+    <url-pattern>/EditDefect</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SendEmail</servlet-name>
+    <url-pattern>/SendEmail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProcessEmail</servlet-name>
+    <url-pattern>/ProcessEmail</url-pattern>
+  </servlet-mapping>
+</web-app>
