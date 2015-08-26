@@ -149,7 +149,7 @@
  			emailBody += "<b>Description:</b><br>" + defect.getDescription();   
  			emailBody += "<br><br>Email sent by Team A Defect Tracker";   
  			%>   
- 			<input type="hidden" id="emailBody" name="emailBody" value="<%= emailBody %>">   
+ 			<input type="hidden" id="emailBody" name="emailBody" value="<%= emailBody.replaceAll("(\r\n|\n)", "<br>") %>">   
  			<input type="hidden" id="emailSubject" name="emailSubject" value="<%= emailSubject %>">   
  			<input type="hidden" id="selectedEmailAddresses" name="selectedEmailAddresses"> 
 
