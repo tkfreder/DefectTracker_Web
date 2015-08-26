@@ -4,8 +4,12 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+
 # class files
 *.class
+
+# classpath
+.classpath
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
