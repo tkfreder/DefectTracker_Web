@@ -5,11 +5,24 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 
-# class files
-*.class
-
-# classpath
+######################
+# Eclipse
+######################
+ 
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
 .classpath
+.settings/
+.loadpath
+*.class
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
