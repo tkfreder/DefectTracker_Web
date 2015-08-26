@@ -146,7 +146,7 @@
  			String emailBody = "<b>Title: " + defect.getSummary() + "</b><br><br><b>ID:</b> " + defect.getId() + "<br>";   
  			emailBody += "<b>Priority:</b> " + defect.getPriority().getName() + "<br><b>Status:</b> " + defect.getStatus().getStatusName() + "<br>";   
  			emailBody += "<b>Assigned to:</b> " + defect.getAssigneeId().getFirstName() + " " + defect.getAssigneeId().getLastName() + "<br><br>";   
- 			emailBody += "<b>Desctiption:</b><br>" + defect.getDescription();   
+ 			emailBody += "<b>Description:</b><br>" + defect.getDescription();   
  			emailBody += "<br><br>Email sent by Team A Defect Tracker";   
  			%>   
  			<input type="hidden" id="emailBody" name="emailBody" value="<%= emailBody %>">   

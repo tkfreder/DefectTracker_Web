@@ -69,6 +69,9 @@ public class MailServer {
 		mimeMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 		}
 		
+		// set from
+		mimeMailMessage.setFrom(new InternetAddress("better.bot@gmail.com"));
+		
 		// set subject line
 		mimeMailMessage.setSubject(mEmailSubject);
 		
