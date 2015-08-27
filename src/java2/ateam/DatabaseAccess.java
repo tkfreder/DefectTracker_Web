@@ -67,7 +67,7 @@ public class DatabaseAccess {
 		int rowsUpdated = 0;
 
 		String query = "UPDATE Defects set title = ?, status = ?, priority = ?, assignee = ?, description = ?"
-				+ " WHERE defect_id = " + /*d.getId();*/ defectId;
+				+ " WHERE defect_id = ?";
 		try {
 
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -77,6 +77,7 @@ public class DatabaseAccess {
 			stmt.setInt(3, priority);
 			stmt.setInt(4, assigneeId);
 			stmt.setString(5, description);
+			stmt.setInt(6,  defectId);
 
 			rowsUpdated = stmt.executeUpdate();
 
@@ -93,14 +94,15 @@ public class DatabaseAccess {
 				+ " FROM Defects a INNER JOIN Users b on a.assignee = b.user_id"
 				+ " INNER JOIN Status_Codes c on a.status = c.status_id"
 				+ " INNER JOIN Priorities d on a.priority = d.priority_id" 
-				+ " WHERE a.defect_id = " + defectId
+				+ " WHERE a.defect_id = ?"
 				+ " ORDER BY defect_id DESC";
 
 		Defect d = null;
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, defectId);
+			ResultSet rs = st.executeQuery();
 
 			if (rs.next()) {
 				
@@ -128,7 +130,8 @@ public class DatabaseAccess {
 		String sql = "SELECT a.defect_id, a.title, a.status, c.name,  a.priority, d.name, a.assignee, b.first_name, b.last_name, b.email, a.description"
 				+ " FROM Defects a INNER JOIN Users b on a.assignee = b.user_id"
 				+ " INNER JOIN Status_Codes c on a.status = c.status_id"
-				+ " INNER JOIN Priorities d on a.priority = d.priority_id" + " ORDER BY defect_id DESC";
+				+ " INNER JOIN Priorities d on a.priority = d.priority_id" 
+				+ " ORDER BY defect_id DESC";
 
 		ArrayList<Defect> defects = new ArrayList<Defect>();
 
