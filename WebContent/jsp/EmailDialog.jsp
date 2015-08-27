@@ -61,20 +61,36 @@
 			} else {
 
 				document.getElementById("sendEmailButton").disabled = false;
+	
+				var emailAddresses = "";
+				for (x = 0; x < document.getElementById("emailTo").length; x++) {
+					emailAddresses += document.getElementById("emailTo")[x].value.trim() + ";";
+				}
+				
+				document.getElementById("selectedEmailAddresses").value = emailAddresses;
+
 			}
 		}
 	</script>
 
 	<div class="container form-group center" style="width: 700px">
-		<div class="well well-sm center" style="margin-top: 30px">
-			<h1>
-				<label for="header">Send Email</label>
-			</h1>
-			<form action="/A_Defect_Tracker/index.html" method="POST">
-				<input class="btn btn-default button-rounded" type="submit"
-					value="Home">
-			</form>
+
+		<div class="well_no_bottom_margin_blue well-sm center" style="margin-top: 30px">
+			<h1_white>
+				<label for="header">Team A Defect Tracker</label>
+			</h1_white>
+			
 		</div>
+	
+		
+		<nav class="navbar navbar-blue">
+		      <ul class="nav navbar-nav">
+		        <li ><a href="index.html"><strong>Home</strong></a></li>
+		        <li><a href="EditDefect"><strong>New Defect</strong></a></li>
+		        <li><a href="ViewAll"><strong>View Defects</strong></a></li> 
+		      </ul>
+
+		</nav>
 
 		<form action="ProcessEmail" method="POST">
 			<div class="center" style="display: inline-block">
@@ -91,7 +107,8 @@
 	
 							for (User user : userList) {
 						%>
-						<option value="<%=user.getUserId()%>">
+
+						<option value="<%=user.getEmail()%>">
 							<%=user.getFirstName() + " " + user.getLastName()%>
 						</option>
 						<%
@@ -121,22 +138,26 @@
 			</div>
 			<br>
 			<br>
-			<input class="btn btn-primary button-rounded"type="submit"
+
+			<input class="btn btn-primary button-rounded" type="submit"
 				value="Send email" id="sendEmailButton" disabled="true">
 
 
+<%    
+ 			// Build email   
+ 			String emailSubject = "Team A Defect Tracker Notification for Defect ID: " + defect.getId() + " - " + defect.getSummary();   
+ 			String emailBody = "<b>Title: " + defect.getSummary() + "</b><br><br><b>ID:</b> " + defect.getId() + "<br>";   
+ 			emailBody += "<b>Priority:</b> " + defect.getPriority().getName() + "<br><b>Status:</b> " + defect.getStatus().getStatusName() + "<br>";   
+ 			emailBody += "<b>Assigned to:</b> " + defect.getAssigneeId().getFirstName() + " " + defect.getAssigneeId().getLastName() + "<br><br>";   
+ 			emailBody += "<b>Description:</b><br>" + defect.getDescription();   
+ 			emailBody += "<br><br>Email sent by Team A Defect Tracker";   
+ 			%>   
+ 			<input type="hidden" id="emailBody" name="emailBody" value="<%= emailBody.replaceAll("(\r\n|\n)", "<br>") %>">   
+ 			<input type="hidden" id="emailSubject" name="emailSubject" value="<%= emailSubject %>">   
+ 			<input type="hidden" id="selectedEmailAddresses" name="selectedEmailAddresses"> 
+
 		</form>
 	</div>
-	<!-- 
-<H1>Some test data:</H1>
-<p><b> (This will all go away down here)</b></p>
-<p>ID: <%=defect.getId()%></p>
-<p>Description: <%=defect.getDescription()%></p>
-<p>Summary: <%=defect.getSummary()%></p>
-<p>Assignee: <%=defect.getAssigneeId().getFirstName() + " " + defect.getAssigneeId().getLastName()%></p>
-<p>Priority: <%=defect.getPriority().getName()%></p>
-<p>Status: <%=defect.getStatus().getStatusName()%></p>
- -->
 
 	<script>
 		SelectSort(document.getElementById('selectEmailTo'));

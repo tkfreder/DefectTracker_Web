@@ -15,14 +15,24 @@
 </head>
 <body>
 	<div class="container form-group center" style="width: 700px">
-		<div class="well well-sm center" style="margin-top: 30px">
-			<h1>
-				<label for="header">View Defects</label>
-			</h1>
-			<form action="/A_Defect_Tracker/index.html" method="POST" >
-				<input class="btn btn-default button-rounded" type="submit" value="Home">
-			</form>
+
+		<div class="well_no_bottom_margin_blue well-sm center" style="margin-top: 30px">
+			<h1_white>
+				<label for="header">Team A Defect Tracker</label>
+			</h1_white>
+			
 		</div>
+	
+		
+		<nav class="navbar navbar-blue">
+		      <ul class="nav navbar-nav">
+		        <li ><a href="index.html"><strong>Home</strong></a></li>
+		        <li><a href="EditDefect"><strong>New Defect</strong></a></li>
+		        <li class="active"><a href="ViewAll"><strong>View Defects</strong></a></li> 
+		      </ul>
+
+		</nav>
+		
 			<% if (request.getAttribute("message") != null){ 
 				
 				switch ((String)request.getAttribute("message")){
@@ -60,8 +70,7 @@
 					
 					<% 
 						break;
-					
-					
+
 					case "email_success":
 						%>
 							<div class="alert-success-no-background">
@@ -69,8 +78,8 @@
 						</div>
 						
 						<% 
-							break;
-						
+
+						break;						
 						
 					case "email_failure":
 						%>
@@ -79,7 +88,7 @@
 							</div>
 						
 						<% 
-							break;
+						break;
 						
 					default:
 						break;
@@ -94,7 +103,7 @@
 			class="table table-bordered table-hover table-condensed table-striped"
 			BORDER="1" width="100%">
 			<THEAD>
-				<TR style="background-color: #FFEBCD">
+				<TR style="background-color: #336699">
 					<TH>Defect #</TH>
 					<TH>Status</TH>
 					<TH>Priority</TH>
@@ -114,7 +123,9 @@
 				<TD ALIGN="center"><%=defectList.get(i).getPriority().getName()%></TD>
 				<TD ALIGN="center"><%=defectList.get(i).getAssigneeId().getFirstName() + " " + defectList.get(i).getAssigneeId().getLastName()%></TD>
 				<TD ALIGN="center"><a href="SendEmail?id=<%=defectList.get(i).getId()%>" class="btn btn-default btn-xs button-rounded-high">
+
 				<span class="glyphicon glyphicon-envelope"></span></a></TD>
+
 			</TR>
 			<%
 				}

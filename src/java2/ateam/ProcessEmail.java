@@ -2,6 +2,8 @@ package java2.ateam;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import java.util.ArrayList;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,23 +24,46 @@ public class ProcessEmail extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		String emailSubject = "";
+		String emailBody = "";
+		String emailRecipients = "";
+		ArrayList<String> emailAddresses;
 		
+		if (request.getParameter("emailSubject") != null || 
+				request.getParameter("emailSubject") != null || 
+				request.getParameter("emailSubject") != null)
+		{
+			
 		
-		// TODO: get request form data and build an email
+			emailSubject = (String)request.getParameter("emailSubject");
+			emailBody = (String)request.getParameter("emailBody");
+			emailRecipients = (String) request.getParameter("selectedEmailAddresses");
+			
+			emailAddresses = new ArrayList<String>();
+			
+			String mailList[] = emailRecipients.split(";");
+			
+			for (String email: mailList){
+				emailAddresses.add(email);
+			}
+			
+			
+			String message = MailServer.sendEmail(emailAddresses, emailBody, emailSubject);
+			
+			if (message.contains("success")){
+				request.setAttribute("message", "email_success");
+			} else {
+				request.setAttribute("message", "email_failure");
+			}
+			
+					
+		} else {
+			request.setAttribute("message", "email_failure");	
+		}
 		
-		
-		// TODO: implement email sending 
-		
-		
-		/* TODO: implement or see if someone else wants to implement a message at the bottom of ViewAll that will 
-		 * display whatever is passed to it
-		 */
-		
-		//request.setAttribute("message", "email_success");
-		request.setAttribute("message", "email_failure");
 		
 		request.getRequestDispatcher("ViewAll").forward(request, response);
-		
 		
 	}
 

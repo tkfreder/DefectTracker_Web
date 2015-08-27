@@ -4,6 +4,7 @@
 <%@ page import="java2.ateam.Priority" %>
 <%@ page import="java2.ateam.Status" %>
 
+<!DOCTYPE>
 <html>
 <head>
 	<jsp:include page="bootstrap_include.jsp" />
@@ -15,28 +16,26 @@
 <title>Team A - Submit New Defect</title>
 </head>
 <body>
+
 	<div class="container form-group center" style="width: 700px">
-		<div class="well well-sm center" style="margin-top: 30px">
-			<h1>
-				<label for="header">
-				
-				<% if (request.getAttribute("defect") != null){ %>
-						
-						Edit Defect			
-					
-				<%} else {%>		
-	
-						Submit New Defect
-				<% } %>
+		<div class="well_no_bottom_margin_blue well-sm center" style="margin-top: 30px">
+			<h1_white>
+				<label for="header">Team A Defect Tracker</label>
+			</h1_white>
 			
-				</label>
-			</h1>
-			<form action="index.html" method="POST">
-				<input class="btn btn-default button-rounded" type="submit" value="Home">
-			</form>
 		</div>
+	
+		
+		<nav class="navbar navbar-blue">
+		      <ul class="nav navbar-nav">
+		        <li ><a href="index.html"><strong>Home</strong></a></li>
+		        <li class="active"><a href="EditDefect"><strong>New Defect</strong></a></li>
+		        <li><a href="ViewAll"><strong>View Defects</strong></a></li> 
+		      </ul>
+
+		</nav>
 		<br />
-		<form action="SubmitDefect" method="POST">			
+		<form name="Edit_Defect_Form" action="SubmitDefect" method="POST">		
 			<div class="row">
 				<div class="col-sm-2 right">
 					<label for="defect">
@@ -68,7 +67,7 @@
 					<label for="title">Title:</label>
 				</div>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="title" name="title"
+					<input type="text" class="form-control" id="title" name="title" required>
 					
 					<% if (request.getAttribute("defect") != null){ %>	
 						
@@ -86,7 +85,7 @@
 					<label for="sel1">Status:</label>
 				</div>
 				<div class="col-sm-8">
-					<select class="form-control" id="sel1" name="status"
+					<select class="form-control" id="sel1" name="status" required>
 						style="width: 200px">
 						<option value="">Choose:</option>
 						<%
@@ -120,7 +119,7 @@
 					<label for="sel2">Priority:</label>
 				</div>
 				<div class="col-sm-8">
-					<select class="form-control" id="sel2" name="priority"
+					<select class="form-control" id="sel2" name="priority" required>
 						style="width: 200px">
 						<option value="">Choose:</option>
 						
@@ -155,7 +154,7 @@
 					<label for="sel3">Assignee:</label>
 				</div>
 				<div class="col-sm-8">
-					<select class="form-control" id="sel3" name="assignee"
+					<select class="form-control" id="sel3" name="assignee" required>
 						style="width: 200px">
 						
 						<option value="">Choose:</option>
@@ -198,7 +197,7 @@
 								Defect defect = (Defect)request.getAttribute("defect");
 								description = defect.getDescription();
 						} %>
-						<textarea class="form-control left" rows="5" id="description" name="description" style="width: 500px"><%= description %></textarea>
+						<textarea class="form-control left" rows="5" id="description" name="description" style="width: 500px" required><%= description %></textarea>
 				</div>
 			</div>
 			
