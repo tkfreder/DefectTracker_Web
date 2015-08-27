@@ -3,7 +3,7 @@
 <%@ page import="java2.ateam.User"%>
 <%@ page import="java2.ateam.Priority"%>
 <%@ page import="java2.ateam.Status"%>
-<!--my comment-->
+
 <!DOCTYPE>
 <html>
 <head>
