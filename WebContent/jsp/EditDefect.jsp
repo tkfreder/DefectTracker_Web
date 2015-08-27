@@ -67,16 +67,17 @@
 					<label for="title">Title:</label>
 				</div>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="title" name="title" required>
 					
-					<% if (request.getAttribute("defect") != null){ %>	
+					
+					<%! String summary = "";%>
+					
+					<%  if (request.getAttribute("defect") != null){
+						   Defect defect = (Defect)request.getAttribute("defect"); 
+						   summary = defect.getSummary(); }
+						   %>	
+						   
+					<input type="text" class="form-control" id="title" value="<%=summary%>" name="title" style="width:500px" required>	
 						
-						<% Defect defect = (Defect)request.getAttribute("defect"); %>
-						
-						value="<%= defect.getSummary() %>"
-							
-					<% } %>
-						style="width: 500px">
 				</div>
 			</div>
 			<br />
