@@ -1,0 +1,57 @@
+thead th {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.right{
+	text-align:right;
+	vertical-align: middle;
+}
+.left{
+	text-align:left;
+}
+.leftMiddle{
+	text-align:left;
+	vertical-align: middle;
+}
+.centerdiv {
+  vertical-align: middle;
+  text-align: center;
+}
+.scrollVertical{
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.button-rounded{
+	border-radius:10px;
+}
+
+.button-rounded-high{
+	border-radius:20px;
+}
+.alert_no_margin_bottom{
+  padding: 15px;
+  margin-bottom: 0px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success-no-background {
+  color: #00CC00;
+  border-color: #d6e9c6;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-danger-no-background {
+  color: #a94442;
+  border-color: #ebccd1;
+}
