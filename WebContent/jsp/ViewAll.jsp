@@ -134,6 +134,7 @@
 					</select>
 				</div>
 			</div>
+			
 			<br>
 			
 			<div class="row">
@@ -142,19 +143,12 @@
 				<div class="col-sm-8" style="width: 200px" >
 					<input type="submit" class="btn btn-primary button-rounded"	value="Search">
 				</div>
-			</div>
-		</form>
-			<br>
-			
-			<div class="row">
-				<div class="col-sm-2 right">
-				</div>
+				</form>
 				<div class="col-sm-8" style="width: 200px" >
 					<input class="btn btn-primary button-rounded"	value="Display All"  onClick= "location.href = 'ViewAll';">
 				</div>
 			</div>
-			
-			 
+		 
 			<br>
 			
 			<div class="row">
