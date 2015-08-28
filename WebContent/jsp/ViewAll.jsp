@@ -3,6 +3,10 @@
     
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java2.ateam.Defect" %>
+<%@ page import="java2.ateam.User" %>
+<%@ page import="java2.ateam.Status" %>
+<%@ page import="java2.ateam.Priority" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,9 +36,133 @@
 		      </ul>
 
 		</nav>
-		
-			<% if (request.getAttribute("message") != null){ 
-				
+		<div class="container center_div">
+		<form name="Search_Defect_Form" action="SearchDefect" method="POST">
+			
+			<br />
+			<div class="row">
+				<div class="col-sm-2 right">
+					<label for="sel1">Status:</label>
+				</div>
+				<div class="col-sm-8">
+					<select class="form-control" id="sel1" name="status"
+						style="width: 200px" >
+
+						<option value="">Choose:</option>
+						<%
+							ArrayList<Status> statusList = (ArrayList<Status>) request.getAttribute("statusList");
+							
+							for (int i = 0; i < statusList.size(); i++) {
+						%>
+
+						<option value="<%=statusList.get(i).getStatusId() %>"
+						
+						<% if (request.getAttribute("status") != null){
+							
+							if (statusList.get(i).getStatusId().equals(request.getAttribute("status"))){ %>
+							selected <%  } 
+							}
+						%>
+						
+						><%=statusList.get(i).getStatusName()%></option>
+
+						<% } %>
+
+					</select>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-sm-2 right">
+					<label for="sel2">Priority:</label>
+				</div>
+				<div class="col-sm-8">
+					<select class="form-control" id="sel2" name="priority"
+						style="width: 200px" >
+						<option value="">Choose:</option>
+
+						<%
+							ArrayList<Priority> priorityList = (ArrayList<Priority>) request.getAttribute("priorityList");
+							
+							for (int i = 0; i < priorityList.size(); i++) {
+						%>
+
+						<option value="<%=priorityList.get(i).getPriorityId()%>"
+						
+						<% if (request.getAttribute("priority") != null){
+							
+							if (String.valueOf(priorityList.get(i).getPriorityId()).equals(request.getAttribute("priority"))){ %>
+							selected <%  } 
+							}
+						%>						
+						
+						><%=priorityList.get(i).getName()%></option>
+
+						<% } %>
+					</select>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-sm-2 right">
+					<label for="sel3">Assignee:</label>
+				</div>
+				<div class="col-sm-8">
+					<select class="form-control" id="sel3" name="assignee"
+						style="width: 200px" >
+
+						<option value="">Choose:</option>
+						<%
+							ArrayList<User> userList = (ArrayList<User>) request.getAttribute("userList");
+							
+							for (int i = 0; i < userList.size(); i++) {
+						%>
+
+						<option value="<%=userList.get(i).getUserId()%>"
+						
+						<% if (request.getAttribute("assignee") != null){
+							
+							if (String.valueOf(userList.get(i).getUserId()).equals(request.getAttribute("assignee"))){ %>
+							selected <%  } 
+							}
+						%>		
+						
+						><%=userList.get(i).getFirstName() + " " + userList.get(i).getLastName()%></option>
+
+						<% } %>
+
+					</select>
+				</div>
+			</div>
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-2 right">
+				</div>
+				<div class="col-sm-8" style="width: 200px" >
+					<input type="submit" class="btn btn-primary button-rounded"	value="Search">
+				</div>
+			</div>
+		</form>
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-2 right">
+				</div>
+				<div class="col-sm-8" style="width: 200px" >
+					<input class="btn btn-primary button-rounded"	value="Display All"  onClick= "location.href = 'ViewAll';">
+				</div>
+			</div>
+			
+			 
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-2 right">
+				</div>
+				<div class="col-sm-8" style="width: 200px" >
+					
+					<% if (request.getAttribute("message") != null){ 
 				switch ((String)request.getAttribute("message")){
 				
 					case "insert_success":
@@ -96,8 +224,12 @@
 				
 			}
 			%>
+					
+				</div>
+			</div>
+	
+		</div>
 		<br>
-
 		<div class="scrollVertical">
 		<TABLE
 			class="table table-bordered table-hover table-condensed table-striped"

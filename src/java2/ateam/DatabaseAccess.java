@@ -161,6 +161,48 @@ public class DatabaseAccess {
 
 		return defects;
 	}
+	
+	public ArrayList<Defect> getDefectsByParams(String statusCode, int priorityId, int assigneeId) {
+
+		String sql = "SELECT a.defect_id, a.title, a.status, c.name,  a.priority, d.name, a.assignee, b.first_name, b.last_name, b.email, a.description"
+				+ " FROM Defects a INNER JOIN Users b on a.assignee = b.user_id"
+				+ " INNER JOIN Status_Codes c on a.status = c.status_id"
+				+ " INNER JOIN Priorities d on a.priority = d.priority_id" ;
+		if (statusCode != "" || (priorityId != -1) || (assigneeId != -1)) { sql += " WHERE TRUE";}
+		if (statusCode != ""){ sql += " AND a.status = '" + statusCode + "'";}		
+		if (priorityId != -1){ sql += " AND a.priority = " + String.valueOf(priorityId);}
+		if (assigneeId != -1){ sql += " AND b.user_id = " + String.valueOf(assigneeId);}
+		
+		sql += " ORDER BY defect_id DESC";
+
+		ArrayList<Defect> defects = new ArrayList<Defect>();
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				
+				int id = rs.getInt(1);
+				String title = rs.getString(2);
+				Status status = new Status(rs.getString(3), rs.getString(4));
+				Priority priority = new Priority(rs.getInt(5), rs.getString(6));
+				User assignee = new User(rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10));
+				String description = rs.getString(11);
+
+				Defect d = new Defect(id, status, priority, assignee, title, description);
+
+				defects.add(d);
+			}
+
+			rs.close();
+			
+		} catch (SQLException ex) {
+			System.err.println("Error: " + ex);
+		}
+
+		return defects;
+	}
 
 	public ArrayList<Priority> getPriorities() {
 		String sql = "SELECT priority_id, name"

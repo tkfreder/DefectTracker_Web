@@ -9,6 +9,10 @@
     <servlet-class>java2.ateam.ViewAll</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>SearchDefect</servlet-name>
+    <servlet-class>java2.ateam.SearchDefect</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>EditDefect</servlet-name>
     <servlet-class>java2.ateam.EditDefect</servlet-class>
   </servlet>
@@ -27,6 +31,10 @@
   <servlet-mapping>
     <servlet-name>ViewAll</servlet-name>
     <url-pattern>/ViewAll</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchDefect</servlet-name>
+    <url-pattern>/SearchDefect</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EditDefect</servlet-name>
