@@ -62,7 +62,7 @@
 			<br />
 			<div class="row">
 				<div class="col-sm-2 right">
-					<label for="title">Title:</label>
+					<label for="title" maxlength="100">Title:</label>
 				</div>
 				<div class="col-sm-8">
 
@@ -185,7 +185,7 @@
 								description = defect.getDescription();
 						} %>
 					<textarea class="form-control left" rows="5" id="description"
-						name="description" style="width: 500px" required><%= description %></textarea>
+						name="description" style="width: 500px"  maxlength="4000" required><%= description %></textarea>
 				</div>
 			</div>
 			<br />

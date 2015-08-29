@@ -46,7 +46,7 @@ public class AddUser extends HttpServlet {
 			
 	    }		
 	    
-	    request.getRequestDispatcher("/jsp/AddUser.jsp").forward(request, response);
+	   request.getRequestDispatcher("/jsp/AddUser.jsp").forward(request, response);
 		
 	}
 

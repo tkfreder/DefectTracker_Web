@@ -28,9 +28,9 @@
 
 		<nav class="navbar navbar-blue">
 			<ul class="nav navbar-nav">
-				<li><a href="index.html"><strong>Home</strong></a></li>
-				<li><a href="EditDefect"><strong>New Defect</strong></a></li>
-				<li><a href="SearchDefect"><strong>View Defects</strong></a></li>
+				<li><a href="/A_Defect_Tracker/index.html"><strong>Home</strong></a></li>
+				<li><a href="/A_Defect_Tracker/EditDefect"><strong>New Defect</strong></a></li>
+				<li><a href="/A_Defect_Tracker/SearchDefect"><strong>View Defects</strong></a></li>
 				<li class="active"><a href="AddUser"><strong>Add User</strong></a></li>
 			</ul>
 
@@ -73,14 +73,14 @@
 			</div>
 	
 		<br />
-		<form name="AddUserForm" action="AddUser" method="POST">
+		<form name="AddUserForm" action="../AddUser" method="POST">
 			<div class="row">
 				<div class="col-sm-2 right">
 					<label for="title">First Name:</label>
 				</div>
 				<div class="col-sm-8">
 
-					<input type="text" class="form-control" id="firstName" name="firstName" style="width: 250px" required>
+					<input type="text" class="form-control" id="firstName" name="firstName" style="width: 250px"  maxlength="50" required>
 
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 				</div>
 				<div class="col-sm-8">
 
-					<input type="text" class="form-control" id="lastName" name="lastName" style="width: 250px" required>
+					<input type="text" class="form-control" id="lastName" name="lastName" style="width: 250px" maxlength="100" required>
 
 				</div>
 			</div>
@@ -104,7 +104,7 @@
 				</div>
 				<div class="col-sm-8">
 
-					<input type="text" class="form-control" id="emai" name="email" style="width: 250px" required>
+					<input type="text" class="form-control" id="emai" name="email" style="width: 250px"  maxlength="100" required>
 
 				</div>
 			</div>
