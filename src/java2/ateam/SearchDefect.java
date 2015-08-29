@@ -21,9 +21,7 @@ public class SearchDefect extends HttpServlet {
 	ArrayList<Priority> priorityList;
 	ArrayList<Status> statusList;
 	
-	String mStatusCode;
-	int mPriorityId = -1;
-	int mUserId = -1;
+	
        
     public SearchDefect() {
     }
@@ -59,6 +57,10 @@ public class SearchDefect extends HttpServlet {
 
 		String relativeWebPath = "/WEB-INF/repository/";
 		String dbPath = getServletContext().getRealPath(relativeWebPath);
+		
+		String mStatusCode = "";
+		int mPriorityId = -1;
+		int mUserId = -1;
 		
 		setDropdowns(dbPath);
 		
