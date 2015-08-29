@@ -88,6 +88,7 @@
 		        <li ><a href="index.html"><strong>Home</strong></a></li>
 		        <li><a href="EditDefect"><strong>New Defect</strong></a></li>
 		        <li><a href="ViewAll"><strong>View Defects</strong></a></li> 
+		        <li><a href="AddUser"><strong>Add User</strong></a></li>
 		      </ul>
 
 		</nav>

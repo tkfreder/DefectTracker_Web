@@ -12,6 +12,10 @@
     <servlet-name>SearchDefect</servlet-name>
     <servlet-class>java2.ateam.SearchDefect</servlet-class>
   </servlet>
+    <servlet>
+    <servlet-name>AddUser</servlet-name>
+    <servlet-class>java2.ateam.AddUser</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>EditDefect</servlet-name>
     <servlet-class>java2.ateam.EditDefect</servlet-class>
@@ -35,6 +39,10 @@
   <servlet-mapping>
     <servlet-name>SearchDefect</servlet-name>
     <url-pattern>/SearchDefect</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AddUser</servlet-name>
+    <url-pattern>/AddUser</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EditDefect</servlet-name>

@@ -36,6 +36,7 @@ public class DatabaseAccess {
 			System.err.println("Error: " + ex);
 		}		
 	}
+	
 
 	public Integer insertDefect(String title, String statusId, int priorityId, int assigneeId, String description) {
 
@@ -270,6 +271,29 @@ public class DatabaseAccess {
 		}
 		
 		return statuses;
+	}
+	
+
+	public Integer insertUser(String firstName, String lastName, String email) {
+
+		int rowsInserted = 0;
+		String query = "INSERT into Users (first_name, last_name, email)"
+						+ "VALUES (?, ?, ?)";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, firstName);
+			stmt.setString(2, lastName);
+			stmt.setString(3, email);
+
+			rowsInserted = stmt.executeUpdate();
+
+		} catch (SQLException ex) {
+			System.err.println("Error: " + ex);
+		}
+		
+		return rowsInserted;
 	}
 
 	public ArrayList<User> getUsers() {
