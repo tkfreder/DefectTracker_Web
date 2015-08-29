@@ -65,34 +65,63 @@ public class SearchDefect extends HttpServlet {
 		DatabaseAccess db = new DatabaseAccess(dbPath);
 	    db.getConnection();
 	    
-	    //get parameters
 	    
-	    if (request.getParameter("status") != ""){
+	    ArrayList<Defect> defectList;
+	    
+	    //build url 
+	  	String url_ViewAll = "/jsp/ViewAll.jsp?";
+	  	
+	  	
+	    //if there are search parameters
+	    if (request.getParameter("status") != null || request.getParameter("priority") != null || request.getParameter("assignee") != null){
 	    	
-	    	mStatusCode = request.getParameter("status");
+	    	//get parameters
+		    
+		    if (request.getParameter("status") != null){
+		    	
+		    	if (request.getParameter("status") != "") { 
+		    		
+		    		mStatusCode = request.getParameter("status");
+		    		//pass status value back to form
+			    	url_ViewAll += "status=" + request.getParameter("status");
+			    	
+		    	}
+		    }
+		    
+		    if (request.getParameter("priority") != null){
+		    	
+		    	if (request.getParameter("priority") != "") {
+		    		
+		    		mPriorityId = Integer.parseInt(request.getParameter("priority"));
+		    		
+		    		//pass priority value back to form
+			    	url_ViewAll += "&priority=" + request.getParameter("priority");  		
+		    	}
+		    }
+		    
+		    if (request.getParameter("assignee") != null){
+		    	
+		    	if (request.getParameter("assignee") != "") { 
+		    		
+		    		mUserId = Integer.parseInt(request.getParameter("assignee"));
+		    		
+		    		//pass assignee value back to form
+			    	url_ViewAll += "&assignee=" + request.getParameter("assignee");
+		    		
+		    	}
+		    }
+		    
+		    //get defect records based on search parameters
+		    defectList = db.getDefectsByParams(mStatusCode, mPriorityId, mUserId);	
+		
+		//get all defect records
+	    } else {
 	    	
-	    	//pass status value back to form
-	    	request.setAttribute("status", request.getParameter("status"));
+	    	defectList = db.getDefects();	
+	    
 	    }
-	    
-	    if (request.getParameter("priority") != ""){
-	    	
-	    	mPriorityId = Integer.parseInt(request.getParameter("priority"));
-	    	
-	    	//pass priority value back to form
-	    	request.setAttribute("priority", request.getParameter("priority"));
-	    }
-	    
-	    if (request.getParameter("assignee") != ""){
-	    	
-	    	mUserId = Integer.parseInt(request.getParameter("assignee"));
-	    	
-	    	//pass assignee value back to form
-	    	request.setAttribute("assignee", request.getParameter("assignee"));
-	    }
-	    
-	    
-	    ArrayList<Defect> defectList = db.getDefectsByParams(mStatusCode, mPriorityId, mUserId);	    
+ 
+	        
 	    db.closeConnection();
 	    
 		request.setAttribute("defectList", defectList);
@@ -104,7 +133,9 @@ public class SearchDefect extends HttpServlet {
 		if (request.getAttribute("message") != null){
 			request.setAttribute("message", request.getAttribute("message"));
 		}
-		request.getRequestDispatcher("/jsp/ViewAll.jsp").forward(request, response);
+				
+		//request.getRequestDispatcher("/jsp/ViewAll.jsp").forward(request, response);
+		request.getRequestDispatcher(url_ViewAll).forward(request, response);
 	}
 
 }

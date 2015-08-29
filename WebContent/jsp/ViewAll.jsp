@@ -32,7 +32,7 @@
 		      <ul class="nav navbar-nav">
 		        <li ><a href="index.html"><strong>Home</strong></a></li>
 		        <li><a href="EditDefect"><strong>New Defect</strong></a></li>
-		        <li class="active"><a href="ViewAll"><strong>View Defects</strong></a></li> 
+		        <li class="active"><a href="SearchDefect"><strong>View Defects</strong></a></li> 
 		      </ul>
 
 		</nav>
@@ -57,10 +57,11 @@
 
 						<option value="<%=statusList.get(i).getStatusId() %>"
 						
-						<% if (request.getAttribute("status") != null){
+						<% if (request.getParameter("status") != null){
 							
-							if (statusList.get(i).getStatusId().equals(request.getAttribute("status"))){ %>
+							if (statusList.get(i).getStatusId().equals(request.getParameter("status"))){ %>
 							selected <%  } 
+							
 							}
 						%>
 						
@@ -89,11 +90,12 @@
 
 						<option value="<%=priorityList.get(i).getPriorityId()%>"
 						
-						<% if (request.getAttribute("priority") != null){
+						<% if (request.getParameter("priority") != null){
 							
-							if (String.valueOf(priorityList.get(i).getPriorityId()).equals(request.getAttribute("priority"))){ %>
+							if (String.valueOf(priorityList.get(i).getPriorityId()).equals(request.getParameter("priority"))){ %>
 							selected <%  } 
 							}
+						
 						%>						
 						
 						><%=priorityList.get(i).getName()%></option>
@@ -120,11 +122,13 @@
 
 						<option value="<%=userList.get(i).getUserId()%>"
 						
-						<% if (request.getAttribute("assignee") != null){
+						<% if (request.getParameter("assignee") != null){
 							
-							if (String.valueOf(userList.get(i).getUserId()).equals(request.getAttribute("assignee"))){ %>
+							if (String.valueOf(userList.get(i).getUserId()).equals(request.getParameter("assignee"))){ %>
 							selected <%  } 
 							}
+						
+			
 						%>		
 						
 						><%=userList.get(i).getFirstName() + " " + userList.get(i).getLastName()%></option>
@@ -145,7 +149,7 @@
 				</div>
 				</form>
 				<div class="col-sm-8" style="width: 200px" >
-					<input class="btn btn-primary button-rounded"	value="Display All"  onClick= "location.href = 'ViewAll';">
+					<input class="btn btn-primary button-rounded"	value="Display All"  onClick= "location.href = 'SearchDefect';">
 				</div>
 			</div>
 		 

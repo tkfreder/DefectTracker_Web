@@ -168,10 +168,20 @@ public class DatabaseAccess {
 				+ " FROM Defects a INNER JOIN Users b on a.assignee = b.user_id"
 				+ " INNER JOIN Status_Codes c on a.status = c.status_id"
 				+ " INNER JOIN Priorities d on a.priority = d.priority_id" ;
-		if (statusCode != "" || (priorityId != -1) || (assigneeId != -1)) { sql += " WHERE TRUE";}
-		if (statusCode != ""){ sql += " AND a.status = '" + statusCode + "'";}		
-		if (priorityId != -1){ sql += " AND a.priority = " + String.valueOf(priorityId);}
-		if (assigneeId != -1){ sql += " AND b.user_id = " + String.valueOf(assigneeId);}
+		
+		if (statusCode != "" || (priorityId != -1) || (assigneeId != -1)) { 
+			sql += " WHERE TRUE";
+			
+			if (statusCode != "")
+				sql += " AND a.status = '" + statusCode + "'";
+			
+			if (priorityId != -1)
+				sql += " AND a.priority = " + String.valueOf(priorityId);
+				
+			if (assigneeId != -1){ 
+				sql += " AND b.user_id = " + String.valueOf(assigneeId);
+			}
+		}		
 		
 		sql += " ORDER BY defect_id DESC";
 
