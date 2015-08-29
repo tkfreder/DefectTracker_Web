@@ -38,7 +38,7 @@
 		<form name="Edit_Defect_Form" action="SubmitDefect" method="POST">
 			<div class="row">
 				<div class="col-sm-2 right">
-					<label for="defect"> <% if (request.getAttribute("defect") != null){ %>
+					<label for="defect"> <% if (request.getParameter("id") != null && request.getAttribute("defect") != null){ %>
 
 						Defect #: <% } %>
 
@@ -68,7 +68,7 @@
 
 					<%! String summary = "";%>
 
-					<%  if (request.getAttribute("defect") != null){
+					<%  if (request.getParameter("id") != null && request.getAttribute("defect") != null){
 						   Defect defect = (Defect)request.getAttribute("defect"); 
 						   summary = defect.getSummary(); }
 						   %>
@@ -95,7 +95,7 @@
 						%>
 
 						<option value="<%=statusList.get(i).getStatusId() %>"
-							<% if (request.getAttribute("defect") != null){
+							<% if (request.getParameter("id") != null && request.getAttribute("defect") != null){
 							
 							Defect defect = (Defect)request.getAttribute("defect");
 						
@@ -126,7 +126,7 @@
 						%>
 
 						<option value="<%=priorityList.get(i).getPriorityId()%>"
-							<% if (request.getAttribute("defect") != null){
+							<% if (request.getParameter("id") != null && request.getAttribute("defect") != null){
 							
 							Defect defect = (Defect)request.getAttribute("defect");
 						
@@ -156,7 +156,7 @@
 						%>
 
 						<option value="<%=userList.get(i).getUserId()%>"
-							<% if (request.getAttribute("defect") != null){
+							<% if (request.getParameter("id") != null && request.getAttribute("defect") != null){
 							
 							Defect defect = (Defect)request.getAttribute("defect");
 						
@@ -179,7 +179,7 @@
 				<div class="col-sm-8">
 					<%  String description = "";
 						
-						if (request.getAttribute("defect") != null){
+						if (request.getParameter("id") != null && request.getAttribute("defect") != null){
 								Defect defect = (Defect)request.getAttribute("defect");
 								description = defect.getDescription();
 						} %>

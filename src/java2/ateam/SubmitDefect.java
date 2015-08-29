@@ -1,6 +1,8 @@
 package java2.ateam;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SubmitDefect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
+	
     public SubmitDefect() {
 
     }
@@ -26,13 +27,12 @@ public class SubmitDefect extends HttpServlet {
 		String relativeWebPath = "/WEB-INF/repository/";
 		String dbPath = getServletContext().getRealPath(relativeWebPath);
 		
+		DatabaseAccess db = new DatabaseAccess(dbPath);
+	    db.getConnection();
+	    
 		//if an id exists already, this is an update
 		if (request.getParameter("id") != null){
 			
-			
-			DatabaseAccess db = new DatabaseAccess(dbPath);
-		    db.getConnection();
-		    
 		   //update this defect in the database
 		    Integer rowsAffected = db.updateDefect(request.getParameter("title"), 
 		    		request.getParameter("status"), 
@@ -40,7 +40,6 @@ public class SubmitDefect extends HttpServlet {
 		    		Integer.parseInt(request.getParameter("assignee")), 
 		    		request.getParameter("description"), 
 		    		Integer.parseInt(request.getParameter("id")));
-		    db.closeConnection();
 		    
 			if (rowsAffected.equals(1)){
 				
@@ -57,16 +56,13 @@ public class SubmitDefect extends HttpServlet {
 		else{
 			
 			//create a new defect record in the database
-			DatabaseAccess db = new DatabaseAccess(dbPath);
-		    db.getConnection();
-		    
 			Integer rowsInserted = db.insertDefect(request.getParameter("title"), 
 		    		request.getParameter("status"), 
 		    		Integer.parseInt(request.getParameter("priority")), 
 		    		Integer.parseInt(request.getParameter("assignee")), 
 		    		request.getParameter("description"));
 		    
-			db.closeConnection();
+			
 		    
 			if (rowsInserted.equals(1))
 				request.setAttribute("message", "insert_success");
@@ -75,6 +71,10 @@ public class SubmitDefect extends HttpServlet {
 
 		}
 		
+
+		//close db connection
+		db.closeConnection();
+			
 		request.getRequestDispatcher("ViewAll").forward(request, response);
 	}
 

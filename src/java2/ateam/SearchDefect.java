@@ -62,6 +62,7 @@ public class SearchDefect extends HttpServlet {
 		int mPriorityId = -1;
 		int mUserId = -1;
 		
+		//get dropdown values
 		setDropdowns(dbPath);
 		
 		DatabaseAccess db = new DatabaseAccess(dbPath);

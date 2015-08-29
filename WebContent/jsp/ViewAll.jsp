@@ -57,7 +57,8 @@
 
 						<option value="<%=statusList.get(i).getStatusId() %>"
 						
-						<% if (request.getParameter("status") != null){
+						<%-- only set dropdown if displaying search parameters, that is, the page that directed to this one was SearchDefect.java --%>
+						<% if (request.getParameter("status") != null && request.getAttribute("javax.servlet.forward.request_uri").toString().contains("SearchDefect") ){
 							
 							if (statusList.get(i).getStatusId().equals(request.getParameter("status"))){ %>
 							selected <%  } 
@@ -90,7 +91,7 @@
 
 						<option value="<%=priorityList.get(i).getPriorityId()%>"
 						
-						<% if (request.getParameter("priority") != null){
+						<% if (request.getParameter("priority") != null && request.getAttribute("javax.servlet.forward.request_uri").toString().contains("SearchDefect")){
 							
 							if (String.valueOf(priorityList.get(i).getPriorityId()).equals(request.getParameter("priority"))){ %>
 							selected <%  } 
@@ -122,7 +123,7 @@
 
 						<option value="<%=userList.get(i).getUserId()%>"
 						
-						<% if (request.getParameter("assignee") != null){
+						<% if (request.getParameter("assignee") != null  && request.getAttribute("javax.servlet.forward.request_uri").toString().contains("SearchDefect")){
 							
 							if (String.valueOf(userList.get(i).getUserId()).equals(request.getParameter("assignee"))){ %>
 							selected <%  } 
