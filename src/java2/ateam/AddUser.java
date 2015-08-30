@@ -2,6 +2,7 @@ package java2.ateam;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +47,8 @@ public class AddUser extends HttpServlet {
 			
 	    }		
 	    
-	   request.getRequestDispatcher("/jsp/AddUser.jsp").forward(request, response);
+	    RequestDispatcher dispatcher = getServletConfig().getServletContext().getRequestDispatcher("/jsp/AddUser.jsp");
+	    dispatcher.forward(request, response);
 		
 	}
 

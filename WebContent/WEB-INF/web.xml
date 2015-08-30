@@ -12,7 +12,7 @@
     <servlet-name>SearchDefect</servlet-name>
     <servlet-class>java2.ateam.SearchDefect</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>AddUser</servlet-name>
     <servlet-class>java2.ateam.AddUser</servlet-class>
   </servlet>

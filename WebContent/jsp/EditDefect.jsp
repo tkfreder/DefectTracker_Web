@@ -19,17 +19,14 @@
 	<div class="container form-group center" style="width: 700px">
 		<div class="well_no_bottom_margin_blue well-sm center"
 			style="margin-top: 30px">
-			<h1_white> <label for="header">Team A Defect
-				Tracker</label> </h1_white>
-
+			<h1_white> <label for="header">Team A Defect Tracker</label> </h1_white>
 		</div>
 
 
 		<nav class="navbar navbar-blue">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html"><strong>Home</strong></a></li>
-				<li class="active"><a href="EditDefect"><strong>New
-							Defect</strong></a></li>
+				<li class="active"><a href="EditDefect"><strong>New Defect</strong></a></li>
 				<li><a href="SearchDefect"><strong>View Defects</strong></a></li>
 				<li><a href="AddUser"><strong>Add User</strong></a></li>
 			</ul>
@@ -185,13 +182,11 @@
 								description = defect.getDescription();
 						} %>
 					<textarea class="form-control left" rows="5" id="description"
-						name="description" style="width: 500px"  maxlength="4000" required><%= description %></textarea>
+						name="description" style="width: 500px" maxlength="4000" required><%= description %></textarea>
 				</div>
 			</div>
-			<br />
-			<br /> 
-			<input type="submit" class="btn btn-primary button-rounded"
-				value="Save">
+			<br /> <br /> <input type="submit"
+				class="btn btn-primary button-rounded" value="Save">
 		</form>
 	</div>
 </body>
