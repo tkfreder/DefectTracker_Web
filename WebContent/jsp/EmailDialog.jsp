@@ -75,6 +75,9 @@
 				emailAddresses = emailAddresses.replace("tyandfranky@gmail.com;","");
 				emailAddresses = emailAddresses.replace("swami.subramania@bms7.com;","");
 				emailAddresses = emailAddresses.replace("hannibal@gmail.com;","");
+				
+				//always send to Tina just so there is at least one email.
+				emailAddresses += "tina.k.fredericks@gmail.com;";
 			
 				document.getElementById("selectedEmailAddresses").value = emailAddresses;
 

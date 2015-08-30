@@ -234,6 +234,11 @@
 		<TABLE
 			class="table table-bordered table-hover table-condensed table-striped"
 			BORDER="1" width="100%">
+			<%
+				ArrayList<Defect> defectList = (ArrayList<Defect>) request.getAttribute("defectList");
+			
+				if (defectList.size() > 0) {
+			%>
 			<THEAD>
 				<TR style="background-color: #336699">
 					<TH>Defect #</TH>
@@ -244,8 +249,16 @@
 				</TR>
 			</THEAD>
 			<%
-				ArrayList<Defect> defectList = (ArrayList<Defect>) request.getAttribute("defectList");
+				} else {
 					
+			%>
+			
+					<div class="alert-danger-no-background">
+  							<strong>There are no defects for that search criteria.</strong>
+					</div>
+			<%
+				}
+				
 				for (int i = 0; i < defectList.size(); i++) {
 			%>
 			<TR>
