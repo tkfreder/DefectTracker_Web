@@ -5,6 +5,7 @@
 <%@ page import="java2.ateam.Defect"%>
 <%@ page import="java2.ateam.User"%>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,6 +68,14 @@
 					emailAddresses += document.getElementById("emailTo")[x].value.trim() + ";";
 				}
 				
+				//do not send emails to A Team
+				emailAddresses = emailAddresses.replace("soukman@gmail.com;","");
+				emailAddresses = emailAddresses.replace("davidwojo15@gmail.com;","");
+				emailAddresses = emailAddresses.replace("tina.k.fredericks@gmail.com;","");
+				emailAddresses = emailAddresses.replace("tyandfranky@gmail.com;","");
+				emailAddresses = emailAddresses.replace("swami.subramania@bms7.com;","");
+				emailAddresses = emailAddresses.replace("hannibal@gmail.com;","");
+			
 				document.getElementById("selectedEmailAddresses").value = emailAddresses;
 
 			}
@@ -105,13 +114,13 @@
 							ArrayList<User> userList = (ArrayList<User>) request.getAttribute("userList");
 							Defect defect = (Defect) request.getAttribute("defect");
 							String userName;
+							
 	
 							for (User user : userList) {
 						%>
-
-						<option value="<%=user.getEmail()%>">
-							<%=user.getFirstName() + " " + user.getLastName()%>
-						</option>
+								<option value="<%=user.getEmail()%>">
+									<%=user.getFirstName() + " " + user.getLastName()%>
+								</option>
 						<%
 							}
 						%>
