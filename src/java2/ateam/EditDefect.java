@@ -24,9 +24,6 @@ public class EditDefect extends HttpServlet {
     private void setDropdowns(String dbPath){
     	if (userList == null || priorityList == null || statusList == null){
     		DatabaseAccess db = new DatabaseAccess(dbPath);
-    		userList = new ArrayList<User>();    	
-    		priorityList = new ArrayList<Priority>();    	
-    		statusList = new ArrayList<Status>();
     		
     		//get connection to database
 	        db.getConnection();

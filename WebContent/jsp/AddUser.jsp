@@ -1,8 +1,5 @@
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="java2.ateam.Defect"%>
 <%@ page import="java2.ateam.User"%>
-<%@ page import="java2.ateam.Priority"%>
-<%@ page import="java2.ateam.Status"%>
 
 <!DOCTYPE>
 <html>
@@ -16,6 +13,37 @@
 <title>Team A - Add User</title>
 </head>
 <body>
+
+		<script>
+		
+		function validateName(){
+			
+			var assigneeDropDown = document.getElementById("assignee");
+			
+			var name = document.getElementById("firstName").value.trim() + " " +  document.getElementById("lastName").value.trim();
+			
+			if (document.getElementById("firstName").value.trim() != "" && document.getElementById("lastName").value.trim() != ""){
+				
+				for (var i=0; i<assigneeDropDown.length; i++){
+				
+					var assignee = assigneeDropDown.options[i].text;
+				
+					if (name == assignee){
+						document.getElementById("submitButton").disabled = true;
+						alert("That name is already being used.  Enter a different name.");
+						document.getElementById("lastName").select(); //this works intermittently?? -TKF
+						return;
+					}
+						
+				}
+				
+				document.getElementById("submitButton").disabled = false;
+						
+			}
+
+		}
+				
+		</script>
 	<div class="container form-group center" style="width: 700px">
 		<div class="well_no_bottom_margin_blue well-sm center" style="margin-top: 30px">
 			<h1_white> <label for="header">Team A Defect Tracker</label> </h1_white>
@@ -71,6 +99,8 @@
 		</div>
 
 		<br />
+		
+		
 
 		<form name="AddUserForm" action="AddUser" method="POST">
 			<div class="row">
@@ -80,7 +110,7 @@
 				<div class="col-sm-8">
 
 					<input type="text" class="form-control" id="firstName" name="firstName" style="width: 250px"
-						maxlength="50" required>
+						maxlength="50" required onchange="validateName()">
 
 				</div>
 			</div>
@@ -93,7 +123,7 @@
 				<div class="col-sm-8">
 
 					<input type="text" class="form-control" id="lastName" name="lastName" style="width: 250px"
-						maxlength="100" required>
+						maxlength="100" required onchange="validateName()">
 
 				</div>
 			</div>
@@ -105,14 +135,37 @@
 				</div>
 				<div class="col-sm-8">
 
-					<input type="text" class="form-control" id="emai" name="email" style="width: 250px"
+					<input type="text" class="form-control" id="email" name="email" style="width: 250px"
 						maxlength="100" required>
 
 				</div>
 			</div>
-			<br /> <br /> <br /> <input type="submit" class="btn btn-primary button-rounded"
-				value="Submit"
-			/>
+			
+			
+			 <br /> 
+			 <input type="submit" class="btn btn-primary button-rounded" id="submitButton"
+				value="Submit" disabled/>
+				
+
+			
+			<div class="row" style="display:none">
+				<div class="col-sm-4 right">
+				</div>
+				<div class="col-sm-8">
+					<select class="form-control" id="assignee" name="assignee" style="width: 200px">
+				
+						<%
+							ArrayList<User> userList = (ArrayList<User>) request.getAttribute("userList");
+											
+								for (int i = 0; i < userList.size(); i++) {
+						%>
+						
+									<option value="<%=userList.get(i).getFirstName()%><%=userList.get(i).getLastName()%>"><%=userList.get(i).getFirstName() + " " + userList.get(i).getLastName()%></option>
+						
+						<% } %>
+				</div>
+			</div>
+				
 		</form>
 	</div>
 
