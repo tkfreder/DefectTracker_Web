@@ -20,18 +20,18 @@
 			
 			var assigneeDropDown = document.getElementById("assignee");
 			
-			var name = document.getElementById("firstName").value.trim() + " " +  document.getElementById("lastName").value.trim();
+			var name = document.getElementById("firstName").value.trim().toUpperCase() + " " +  document.getElementById("lastName").value.trim().toUpperCase();
 			
 			if (document.getElementById("firstName").value.trim() != "" && document.getElementById("lastName").value.trim() != ""){
 				
 				for (var i=0; i<assigneeDropDown.length; i++){
 				
-					var assignee = assigneeDropDown.options[i].text;
+					var assignee = assigneeDropDown.options[i].text.toUpperCase();
 				
 					if (name == assignee){
 						document.getElementById("submitButton").disabled = true;
 						alert("That name is already being used.  Enter a different name.");
-						document.getElementById("lastName").select(); //this works intermittently?? -TKF
+						document.getElementById("lastName").focus();
 						return;
 					}
 						

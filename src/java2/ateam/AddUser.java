@@ -45,15 +45,11 @@ public class AddUser extends HttpServlet {
 				request.setAttribute("message", "add_user_success");
 			else
 				request.setAttribute("message", "add_user_failure");
-	    } 
-	    
-	    //get the user list to display on the form
-	    else {
+	    } 	    
 	    	
-    		userList = db.getUsers();
-    		Collections.sort(userList);
-    		request.setAttribute("userList", userList);
-	    }
+		userList = db.getUsers();
+		Collections.sort(userList);
+		request.setAttribute("userList", userList);
 	    
 	    //close db connection
 		db.closeConnection();
