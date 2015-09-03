@@ -33,7 +33,3 @@ Notes & steps to install & run the Team A Defect Tracker web application
 	
 	* Note: There is no technical support and no warranty is implied.  Use at own risk.
 
-        ************************
-        *Released known defects*
-        ************************
-	- Do not use the double-quote character " in your defect title or description. This character will cause an issue with email generation, by cutting off your email at the first double-quote character.
