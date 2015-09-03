@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java2.ateam.Defect"%>
 <%@ page import="java2.ateam.User"%>
+<%@ page import="org.apache.commons.lang.*"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -164,7 +165,7 @@
  			emailBody += "<b>Description:</b><br>" + defect.getDescription();   
  			emailBody += "<br><br>Email sent by Team A Defect Tracker";   
  			%>   
- 			<input type="hidden" id="emailBody" name="emailBody" value="<%= emailBody.replaceAll("(\r\n|\n)", "<br>") %>">   
+ 			<input type="hidden" id="emailBody" name="emailBody" value="<%= StringEscapeUtils.escapeHtml(emailBody.replaceAll("(\r\n|\n)", "<br>")) %>">
  			<input type="hidden" id="emailSubject" name="emailSubject" value="<%= emailSubject %>">   
  			<input type="hidden" id="selectedEmailAddresses" name="selectedEmailAddresses"> 
 
