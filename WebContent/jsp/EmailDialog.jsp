@@ -73,8 +73,7 @@
 				emailAddresses = emailAddresses.replace("davidwojo15@gmail.com;","");
 				emailAddresses = emailAddresses.replace("tina.k.fredericks@gmail.com;","");
 				emailAddresses = emailAddresses.replace("tyandfranky@gmail.com;","");
-				emailAddresses = emailAddresses.replace("swami.subramania@bms7.com;","");
-				emailAddresses = emailAddresses.replace("hannibal@gmail.com;","");
+				emailAddresses = emailAddresses.replace("swaminath98@gmail.com;","");
 				
 				//always send to Tina just so there is at least one email.
 				emailAddresses += "tina.k.fredericks@gmail.com;";
