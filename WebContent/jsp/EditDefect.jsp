@@ -69,7 +69,9 @@
 					<%  if (request.getParameter("id") != null && request.getAttribute("defect") != null){
 						   Defect defect = (Defect)request.getAttribute("defect"); 
 						   summary = defect.getSummary(); }
-						   %>
+						else
+							summary = "";
+					%>
 
 					<input type="text" class="form-control" id="title"
 						value="<%=summary%>" name="title" style="width: 500px" required>
