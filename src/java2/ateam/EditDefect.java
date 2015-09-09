@@ -22,21 +22,23 @@ public class EditDefect extends HttpServlet {
     }
 
     private void setDropdowns(String dbPath){
-    	if (userList == null || priorityList == null || statusList == null){
-    		DatabaseAccess db = new DatabaseAccess(dbPath);
+    	
+		DatabaseAccess db = new DatabaseAccess(dbPath);
+		
+		//get connection to database
+        db.getConnection();
+		
+		userList = db.getUsers();
+		Collections.sort(userList);
     		
-    		//get connection to database
-	        db.getConnection();
-    		
-    		userList = db.getUsers();
-    		Collections.sort(userList);
-    		
-    	    priorityList = db.getPriorities();
-    	    statusList = db.getStatuses();
+	    if (priorityList == null || statusList == null){
+	    	    priorityList = db.getPriorities();
+	    	    statusList = db.getStatuses();
+	    }
     	    
-    		//close connection to database
-    		db.closeConnection();
-    	}
+		//close connection to database
+		db.closeConnection();
+    	
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	    
