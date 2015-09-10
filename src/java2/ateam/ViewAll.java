@@ -26,26 +26,25 @@ public class ViewAll extends HttpServlet {
 	public ViewAll(){				
 	}	
 	
-	private void setDropdowns(String dbPath){
-    	if (userList == null || priorityList == null || statusList == null){
-    		DatabaseAccess db = new DatabaseAccess(dbPath);
-    		userList = new ArrayList<User>();    	
-    		priorityList = new ArrayList<Priority>();    	
-    		statusList = new ArrayList<Status>();
-    		
-    		//get connection to database
+	 private void setDropdowns(String dbPath){
+	    	
+			DatabaseAccess db = new DatabaseAccess(dbPath);
+			
+			//get connection to database
 	        db.getConnection();
-    		
-    		userList = db.getUsers();
-    		Collections.sort(userList);
-    		
-    	    priorityList = db.getPriorities();
-    	    statusList = db.getStatuses();
-    	    
-    		//close connection to database
-    		db.closeConnection();
-    	}
-    }
+			
+			userList = db.getUsers();
+			Collections.sort(userList);
+	    		
+		    if (priorityList == null || statusList == null){
+		    	    priorityList = db.getPriorities();
+		    	    statusList = db.getStatuses();
+		    }
+	    	    
+			//close connection to database
+			db.closeConnection();
+	    	
+	    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
