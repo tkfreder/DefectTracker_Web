@@ -40,7 +40,7 @@
     <servlet-name>SearchDefect</servlet-name>
     <url-pattern>/SearchDefect</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>AddUser</servlet-name>
     <url-pattern>/AddUser</url-pattern>
   </servlet-mapping>
